@@ -6,3 +6,5 @@ streamlit
 pypdf
 faiss-cpu
 python-dotenv
+flask-api
+uvicorn
