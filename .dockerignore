@@ -1,0 +1,6 @@
+__pycache__/
+.env
+streamlit.py
+*.pyc
+*.pyo
+*.pyd
