@@ -11,3 +11,7 @@ def home():
 def query(question: str):
     answer, sources = query_kb(question)
     return {"answer": answer, "sources": sources}
+
+@app.get("/health")
+def health():
+    return {"status":"ok"}
