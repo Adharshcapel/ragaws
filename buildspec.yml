@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Building Docker image
+      - docker build -t rag-fastapi .
+
+      - echo Running container
+      - docker run -d -p 8000:8000 rag-fastapi
+
+      - echo Waiting for app to start
+      - sleep 10
+
+      - echo Testing health endpoint
+      - curl http://localhost:8000/health
