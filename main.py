@@ -14,4 +14,4 @@ def query(question: str):
 
 @app.get("/health")
 def health():
-    return {"status":"ok"}
+    return {"status":"healthy"}
