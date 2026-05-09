@@ -8,12 +8,15 @@ KNOWLEDGE_BASE_ID = os.getenv("KNOWLEDGE_BASE_ID")
 MODEL_ARN = os.getenv("MODEL_ARN")
 REGION = os.getenv("AWS_DEFAULT_REGION")
 
-client = boto3.client(
-    "bedrock-agent-runtime",
-    region_name=REGION
-)
 
 def query_kb(question):
+
+    # Create Bedrock client only when query is called
+    client = boto3.client(
+        "bedrock-agent-runtime",
+        region_name=REGION
+    )
+
     response = client.retrieve_and_generate(
         input={"text": question},
         retrieveAndGenerateConfiguration={
@@ -28,6 +31,7 @@ def query_kb(question):
     answer = response["output"]["text"]
 
     sources = []
+
     try:
         for item in response["citations"]:
             for ref in item["retrievedReferences"]:
